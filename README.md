@@ -15,13 +15,12 @@ An enterprise-ready University Management System built with **Python**, **Django
 | **💳 Tuition Payments** | Integrated online payment processing (Stripe & GoPay) for semester fees and payment receipts. |
 | **🔍 Search & Filter** | Global search across students, faculty, departments, and course catalogs. |
 | **⚡ REST API** | Built-in Django REST Framework (DRF) endpoints for mobile or external service integrations. |
-| **🐳 Docker Support** | Production-ready `Dockerfile` and `docker-compose.yml` for rapid deployment. |
 
 ---
 
 ## 📁 Simple Project Architecture
 
-The repository is structured logically to separate backend logic, assets, and deployment:
+The repository is structured logically to separate backend logic and assets:
 
 ```plaintext
 University-Management-System/
@@ -45,9 +44,8 @@ University-Management-System/
 │   ├── requirements.txt          # Requirements entry point
 │   └── .env.example              # Environment variables template
 │
-├── docker/                       # Container deployment files
-│   ├── Dockerfile                # Docker build instructions
-│   └── docker-compose.yml        # Multi-container orchestration
+├── api/                          # Serverless entrypoint
+│   └── index.py
 │
 ├── .gitignore                    # Prevents cache, venv, and secrets from committing
 └── README.md                     # Documentation
@@ -61,7 +59,6 @@ University-Management-System/
 
 - **Python**: 3.10 or higher
 - **Git**
-- *(Optional)* **Docker & Docker Compose**
 
 ---
 
@@ -118,16 +115,6 @@ python backend/manage.py runserver
 Now open your browser and visit:
 - 🌐 **Web Application**: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 - ⚙️ **Admin Portal**: [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/)
-
----
-
-## 🐳 Running with Docker
-
-To run the entire system inside Docker containers:
-
-```bash
-docker-compose -f docker/docker-compose.yml up --build
-```
 
 ---
 
