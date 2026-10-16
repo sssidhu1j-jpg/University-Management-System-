@@ -114,13 +114,19 @@ ASGI_APPLICATION = "config.asgi.application"
 if os.environ.get("VERCEL"):
     import shutil
     tmp_db = "/tmp/db.sqlite3"
-    local_db = os.path.join(BASE_DIR, "db.sqlite3")
-    if not os.path.exists(tmp_db) and os.path.exists(local_db):
-        try:
-            shutil.copyfile(local_db, tmp_db)
-        except Exception:
-            pass
-    DB_NAME = tmp_db if os.path.exists(tmp_db) else local_db
+    candidates = [
+        os.path.join(BASE_DIR, "db.sqlite3"),
+        os.path.join(os.path.dirname(BASE_DIR), "db.sqlite3"),
+    ]
+    if not os.path.exists(tmp_db):
+        for candidate in candidates:
+            if os.path.exists(candidate):
+                try:
+                    shutil.copyfile(candidate, tmp_db)
+                    break
+                except Exception:
+                    pass
+    DB_NAME = tmp_db if os.path.exists(tmp_db) else os.path.join(BASE_DIR, "db.sqlite3")
 else:
     DB_NAME = os.path.join(BASE_DIR, "db.sqlite3")
 
