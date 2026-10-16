@@ -1,1 +1,34 @@
--r requirements/local.txt
+# Core Django Framework
+Django>=5.0,<6.0
+django-model-utils==4.3.1
+django-crispy-forms==1.14.0
+crispy-bootstrap5==0.7
+django-filter==23.5
+django-modeltranslation==0.18.11
+django-extensions
+
+# REST API
+djangorestframework==3.14.0
+django-cors-headers==3.13.0
+
+# Configuration & Environment
+python-decouple==3.8
+python-dotenv
+
+# Static Files & Production Server
+whitenoise==6.2.0
+gunicorn==20.1.0
+
+# Image & PDF Processing
+Pillow>=9.3.0
+reportlab>=4.0.4
+xhtml2pdf>=0.2.15
+
+# Admin Dashboard
+django-jet-reboot==1.3.5
+
+# Payments & Utilities
+stripe==5.5.0
+gopay==2.0.1
+pytz==2022.7
+openai
