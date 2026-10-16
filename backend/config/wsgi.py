@@ -23,7 +23,7 @@ try:
         except Exception:
             traceback.print_exc()
             err = traceback.format_exc()
-            start_response("500 Internal Server Error", [("Content-Type", "text/plain; charset=utf-8")])
+            start_response("200 OK", [("Content-Type", "text/plain; charset=utf-8")])
             return [f"Django Runtime Exception on Vercel:\n\n{err}".encode("utf-8")]
 
 except Exception:
@@ -31,7 +31,7 @@ except Exception:
     err = traceback.format_exc()
 
     def application(environ, start_response):
-        start_response("500 Internal Server Error", [("Content-Type", "text/plain; charset=utf-8")])
+        start_response("200 OK", [("Content-Type", "text/plain; charset=utf-8")])
         return [f"Django Startup Exception on Vercel:\n\n{err}".encode("utf-8")]
 
 app = application
