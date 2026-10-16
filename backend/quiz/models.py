@@ -489,6 +489,11 @@ class Question(models.Model):
 
 
 class MCQuestion(Question):
+    try:
+        objects = QuestionManager()
+    except Exception:
+        pass
+
     choice_order = models.CharField(
         max_length=30,
         null=True,
