@@ -1,6 +1,11 @@
 import os
 import sys
 
+try:
+    import setuptools
+except ImportError:
+    pass
+
 def main():
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
     try:
