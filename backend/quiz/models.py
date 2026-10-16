@@ -470,7 +470,15 @@ class Question(models.Model):
         verbose_name=_("Explanation"),
     )
 
-    objects = InheritanceManager()
+    try:
+        from modeltranslation.manager import MultilingualManager
+
+        class QuestionManager(InheritanceManager, MultilingualManager):
+            pass
+
+        objects = QuestionManager()
+    except Exception:
+        objects = InheritanceManager()
 
     class Meta:
         verbose_name = _("Question")
