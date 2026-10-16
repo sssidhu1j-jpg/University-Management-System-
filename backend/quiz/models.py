@@ -15,6 +15,11 @@ from django.db.models.signals import pre_save
 
 from django.db.models import Q
 
+try:
+    import setuptools
+except ImportError:
+    pass
+
 from model_utils.managers import InheritanceManager
 from course.models import Course
 from .utils import *
