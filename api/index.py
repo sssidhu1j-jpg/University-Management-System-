@@ -13,7 +13,19 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
 
 try:
     from django.core.wsgi import get_wsgi_application
-    app = get_wsgi_application()
+    _django_app = get_wsgi_application()
+
+    def app(environ, start_response):
+        try:
+            return _django_app(environ, start_response)
+        except Exception:
+            traceback.print_exc()
+            error_msg = traceback.format_exc()
+            status = '500 Internal Server Error'
+            headers = [('Content-Type', 'text/plain; charset=utf-8')]
+            start_response(status, headers)
+            return [f"Django runtime exception on Vercel:\n\n{error_msg}".encode('utf-8')]
+
 except Exception as e:
     traceback.print_exc()
     error_msg = traceback.format_exc()
